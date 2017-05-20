@@ -16,4 +16,28 @@ class Person < ActiveRecord::Base
   has_many :publishers,
     through: :book_deals,
     source: :publisher
+
+  has_many :authored_books,
+    class_name: 'Book',
+    foreign_key: :author_id
+
+  has_many :lendings,
+    class_name: 'Lending',
+    foreign_key: :borrower_id
+
+  has_many :borrowed_books,
+    through: :lendings,
+    source: :borrowed_book
+
+  has_many :book_reviews,
+    class_name: 'Review',
+    foreign_key: :reviewer_id
+
+  has_many :book_reviews_written,
+    through: :book_reviews,
+    source: :reviewed_book
+
+  has_many :reviews_of_authored_books,
+    through: :authored_books,
+    source: :reviews
 end

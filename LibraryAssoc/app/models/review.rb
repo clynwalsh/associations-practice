@@ -11,4 +11,11 @@
 #
 
 class Review < ActiveRecord::Base
+  belongs_to :reviewed_book,
+    class_name: 'Book',
+    foreign_key: :book_id
+
+  belongs_to :reviewer,
+    class_name: 'Person',
+    foreign_key: :reviewer_id
 end

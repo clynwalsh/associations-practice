@@ -10,4 +10,11 @@
 #
 
 class Shelf < ActiveRecord::Base
+  belongs_to :library,
+    class_name: 'LibraryBranch',
+    foreign_key: :library_id
+
+  has_many :books,
+    class_name: 'Book',
+    foreign_key: :shelf_id
 end
