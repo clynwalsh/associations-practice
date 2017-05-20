@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520213838) do
+ActiveRecord::Schema.define(version: 20170520222039) do
 
   create_table "book_deals", force: :cascade do |t|
     t.integer  "author_id",    null: false
     t.integer  "publisher_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "book_id"
   end
 
   add_index "book_deals", ["author_id"], name: "index_book_deals_on_author_id"

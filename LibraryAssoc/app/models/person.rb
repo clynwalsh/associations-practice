@@ -9,4 +9,11 @@
 #
 
 class Person < ActiveRecord::Base
+  has_many :book_deals,
+    class_name: 'BookDeal',
+    foreign_key: :author_id
+
+  has_many :publishers,
+    through: :book_deals,
+    source: :publisher
 end

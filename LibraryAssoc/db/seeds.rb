@@ -48,6 +48,7 @@ end
 
 Book.all.each do |book|
   BookDeal.create!(
+    book_id: book.id,
     author_id: book.author_id,
     publisher_id: PublishingCompany.all.sample.id
   )
