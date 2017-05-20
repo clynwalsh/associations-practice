@@ -12,7 +12,7 @@ end
 
 10.times do
   LibraryBranch.create!(
-    name: Faker::Address.unique.city,
+    name: "#{Faker::Address.unique.city} Library",
     address: Faker::Address.unique.street_address)
 end
 
@@ -55,8 +55,11 @@ Book.all.each do |book|
 end
 
 400.times do
+  book = Book.all.sample
+
   Lending.create!(
-    book_id: Book.all.sample.id,
-    borrower_id: Person.all.sample.id
+    book_id: book.id,
+    borrower_id: Person.all.sample.id,
+    library_id: book.library.id
   )
 end

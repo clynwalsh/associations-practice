@@ -19,6 +19,10 @@ class Book < ActiveRecord::Base
     class_name: 'Shelf',
     foreign_key: :shelf_id
 
+  has_one :library,
+    through: :shelf,
+    source: :library
+
   has_one :book_deal,
     class_name: 'BookDeal',
     foreign_key: :book_id

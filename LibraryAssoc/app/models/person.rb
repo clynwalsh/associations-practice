@@ -21,19 +21,19 @@ class Person < ActiveRecord::Base
     class_name: 'Book',
     foreign_key: :author_id
 
-  has_many :lendings,
+  has_many :borrowings,
     class_name: 'Lending',
     foreign_key: :borrower_id
 
   has_many :borrowed_books,
-    through: :lendings,
+    through: :borrowings,
     source: :borrowed_book
 
   has_many :book_reviews,
     class_name: 'Review',
     foreign_key: :reviewer_id
 
-  has_many :book_reviews_written,
+  has_many :books_reviewed,
     through: :book_reviews,
     source: :reviewed_book
 
