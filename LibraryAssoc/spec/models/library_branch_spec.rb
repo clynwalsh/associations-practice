@@ -11,15 +11,11 @@ describe LibraryBranch do
     expect(branch.books.first.id).to be(1)
   end
 
-  it "has a lending" do
-    expect(branch.lendings.first.id).to be(1)
+  it "has lent a book" do
+    expect(branch.lent_books.first.id).to be(1)
   end
 
   it "has a patron" do
     expect(branch.patrons.first.id).to be(1)
-  end
-
-  it "has lent a book" do
-    expect(branch.lent_books.first.id).to be(1)
   end
 end
