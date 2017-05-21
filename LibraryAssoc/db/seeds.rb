@@ -6,60 +6,29 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-200.times do
-  Person.create!(name: Faker::Name.unique.name)
-end
+p1 = Person.create(name: 'Oscar Alvarez')
+p2 = Person.create(name: 'Michael Coates')
+p3 = Person.create(name: 'Ali Harris')
+p4 = Person.create(name: 'Tommy Duek')
 
-10.times do
-  LibraryBranch.create!(
-    name: "#{Faker::Address.unique.city} Library",
-    address: Faker::Address.unique.street_address)
-end
+lb1 = LibraryBranch.create(name: 'Flatbush Branch', address: 'Linden Blvd, Brooklyn')
+lb2 = LibraryBranch.create(name: 'Park Slope Branch', address: '9th Street, Brooklyn')
 
-50.times do
-  Shelf.create!(
-    library_id: LibraryBranch.all.sample.id,
-    location: "#{("A".."Z").to_a.sample}#{(1..9).to_a.sample}"
-    )
-end
+s1 = Shelf.create(library_id: lb1.id, location: 'A3')
+s2 = Shelf.create(library_id: lb2.id, location: 'F4')
 
-100.times do
-  Book.create!(
-    title: Faker::Book.unique.title,
-    author_id: Person.all.sample.id,
-    shelf_id: Shelf.all.sample.id
-    )
-end
+b1 = Book.create(title: 'How to Win at Bootcamp', author_id: p3.id, shelf_id: s1.id)
+b2 = Book.create(title: 'How to Be Better at Ruby', author_id: p1.id, shelf_id: s2.id)
 
-5.times do
-  PublishingCompany.create!(
-    name: Faker::Company.unique.name,
-    address: Faker::Address.unique.street_address
-  )
-end
+pc1 = PublishingCompany.create(name: 'App Academy Press, Ltd', address: '25th Street, NYC')
 
-400.times do
-  Review.create!(
-    text: Faker::StarWars.quote,
-    book_id: Book.all.sample.id,
-    reviewer_id: Person.all.sample.id
-  )
-end
+r1 = Review.create(text: 'this book is so great!', book_id: b1.id, reviewer_id: p4.id)
+r2 = Review.create(text: 'i am so much better at ruby now!', book_id: b2.id, reviewer_id: p2.id)
 
-Book.all.each do |book|
-  BookDeal.create!(
-    book_id: book.id,
-    author_id: book.author_id,
-    publisher_id: PublishingCompany.all.sample.id
-  )
-end
+bd1 = BookDeal.create(book_id: b1.id, author_id: p3.id, publisher_id: pc1.id)
+bd2 = BookDeal.create(book_id: b2.id, author_id: p1.id, publisher_id: pc1.id)
 
-400.times do
-  book = Book.all.sample
-
-  Lending.create!(
-    book_id: book.id,
-    borrower_id: Person.all.sample.id,
-    library_id: book.library.id
-  )
-end
+l1 = Lending.create(book_id: b1.id, borrower_id: p2.id, library_id: lb1.id)
+l2 = Lending.create(book_id: b1.id, borrower_id: p1.id, library_id: lb1.id)
+l3 = Lending.create(book_id: b2.id, borrower_id: p4.id, library_id: lb2.id)
+l4 = Lending.create(book_id: b2.id, borrower_id: p3.id, library_id: lb2.id)
